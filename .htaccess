@@ -1,0 +1,17 @@
+AddType application/x-mpegURL .m3u8
+AddType video/MP2T .ts
+
+# IMPORTANT: You must be SURE to turn on "AllowEncodedSlashes NoDecode" in the main Apache config file.  
+# Doing so is not allowed in .htaccess
+
+RewriteEngine On
+
+# tailor RewriteBase with your own value
+RewriteBase /~bshensky/transcode/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^data/(.*)\.m3u8$ index.php?source=$1 [QSA,NC,L]
+
+# tailor Action custom-m3u8-handler with your own value
+AddHandler custom-m3u8-handler .m3u8
+Action custom-m3u8-handler /~bshensky/transcode/index.php
