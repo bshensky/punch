@@ -50,7 +50,8 @@ switch($q) {
 		// the following seems to work with the mod_action handler for existing m3u8 files.  If the .htaccess file is rearchitected, this will need servicing too.
 		$source_file = basename($_SERVER['REQUEST_URI']);
 		// scrape all up to the final .m3u8, and ditch any parameters appended to the spec
-		$source_url = preg_replace('/(.*).m3u8(\?.*)$/i', '\1', urldecode($source_file));
+		// WAS: $source_url = preg_replace('/(.*).m3u8(\?.*)$/i', '\1', urldecode($source_file));
+		$source_url = preg_replace('/(.*)(.m3u8.*)$/i', '\1', urldecode($source_file));
 		if ($job = $j->job_of_source($source_url)) {
 			$j->ping_job($job);	
 		}
