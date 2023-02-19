@@ -7,8 +7,8 @@ define("DEFAULT_PRINT_FORMAT", "text/plaintext");
 
 require_once 'config.php';
 
-// require __DIR__ . '/vendor/autoload.php';
-require_once '/home/bshensky/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
+// require_once '/home/bshensky/vendor/autoload.php';
 require_once 'includes/SpawnTranscoder.php';
 require_once 'includes/JobFlusher.php';
 require_once 'includes/JobController.php';
